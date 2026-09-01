@@ -32,13 +32,13 @@ loop:
     # --- Carga de dato --- 
     lw $t6, 0($t5)        # Leer X[i] 
      
-    # [CAMBIO] Se mueve esta instrucción desde antes del sw para ocupar
+    # [CAMBIO HECHO AQUI] Se mueve esta instrucción desde antes del sw para ocupar
     # el ciclo entre lw y mul y evitar el riesgo Load-Use.
     addu $t9, $s1, $t4    # t9 = dirección de Y[i] 
      
     # --- Operación aritmética --- 
-    mul $t7, $t6, $t0     # t7 = X[i] * A  (Riesgo de datos: Load-Use) 
-    addu $t8, $t7, $t1    # t8 = t7 + B    (Riesgo de datos: Dependencia mul-addu) 
+    mul $t7, $t6, $t0     # t7 = X[i] * A  
+    addu $t8, $t7, $t1    # t8 = t7 + B   
      
     # --- Almacenamiento de resultado --- 
     sw $t8, 0($t9)        # Guardar resultado en Y[i] 
